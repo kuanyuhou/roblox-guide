@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roblox Studio 學習計畫</title>
+<meta name="description" content="適合 8 到 14 歲孩子的 Roblox Studio 8 週入門計畫：從認識介面、寫第一行 Luau 程式，到發布自己的跑酷遊戲。">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="inner">
+  <a class="brand" href="index.html">Roblox 家長指南</a>
+  <p>陪孩子玩得安全、健康，也玩出成長</p>
+  <nav class="site">
+    <a href="index.html">首頁</a>
+    <a href="what.html">Roblox 是什麼</a>
+    <a href="games.html">熱門遊戲與 RIVALS</a>
+    <a href="parents.html">家長監護與共玩</a>
+    <a href="studio.html" aria-current="page">Studio 學習計畫</a>
+    <a href="health.html" class="health">★ 青少年身心健康</a>
+  </nav>
+</div></header>
+<main>
+  <h1>Roblox Studio 兒童入門學習計畫（8 週）</h1>
+  <div class="card">
+    <p><strong>適合年齡：</strong>約 8 到 14 歲，年紀較小的孩子可以把進度放慢一倍。<br>
+    <strong>建議頻率：</strong>每週 3 到 4 次，每次 30 到 45 分鐘。<br>
+    <strong>最終目標：</strong>完成並發布一款自己的<strong>跑酷闖關遊戲（Obby）</strong>，讓家人朋友一起玩。</p>
+  </div>
+
+  <h2>開始前的準備</h2>
+  <ul>
+    <li><strong>電腦：</strong>Roblox Studio 只能在 <strong>Windows 或 Mac 電腦</strong>上使用，手機和平板不行。</li>
+    <li><strong>安裝：</strong>到 Roblox 官網登入帳號，下載並安裝 Roblox Studio（免費）。</li>
+    <li><strong>滑鼠：</strong>建議用滑鼠，用觸控板操作 3D 視角很辛苦。</li>
+    <li><strong>筆記本：</strong>準備一本「遊戲設計筆記」，畫關卡草圖、記點子。</li>
+  </ul>
+
+  <h2>第 1 階段：認識工具（第 1 到 2 週）</h2>
+  <h3>第 1 週：熟悉介面</h3>
+  <ul>
+    <li>打開 Studio，選 <strong>Baseplate</strong>（空白地板）範本</li>
+    <li>認識 4 個重要視窗：<strong>Explorer（物件總管）</strong>、<strong>Properties（屬性）</strong>、<strong>Toolbox（工具箱）</strong>，以及視角操作（按住右鍵轉視角，W、A、S、D 移動）</li>
+    <li>用 <strong>Part（方塊）</strong> 練習 <strong>Move、Scale、Rotate</strong> 三個工具</li>
+    <li>按 <strong>Play</strong> 測試，走進自己蓋的世界</li>
+  </ul>
+  <div class="tip"><p><strong>小任務：</strong>蓋一間有屋頂、門和窗戶的小房子。</p></div>
+
+  <h3>第 2 週：蓋第一個跑酷關卡</h3>
+  <ul>
+    <li><strong>Anchored（固定）：</strong>勾選後方塊才不會掉下去，這是新手最常忘記的設定</li>
+    <li>改變 <strong>Color（顏色）</strong> 和 <strong>Material（材質）</strong></li>
+    <li>用 <strong>SpawnLocation（重生點）</strong> 設定出發位置</li>
+    <li>設計跳台：寬窄、高低、間距的變化</li>
+  </ul>
+  <div class="tip"><p><strong>小任務：</strong>做一條有 10 個跳台的跑酷路線，請家人試玩。</p></div>
+
+  <h2>第 2 階段：寫第一行程式（第 3 到 5 週）</h2>
+  <h3>第 3 週：認識程式（Luau）</h3>
+  <p>在方塊上按 <strong>＋ → Script</strong>，新增一個程式。打開 <strong>Output（輸出）</strong> 視窗看結果：</p>
+<pre><code>print("哈囉，我的第一個遊戲！")</code></pre>
+  <p>用程式改變方塊：</p>
+<pre><code>local part = script.Parent
+part.BrickColor = BrickColor.new("Bright red")
+part.Transparency = 0.5</code></pre>
+  <div class="note"><p><strong>重要觀念：</strong><code>local</code> 用來建立<strong>變數</strong>，可以想成貼了名字的盒子，用來存放東西。</p></div>
+  <div class="tip"><p><strong>小任務：</strong>用程式讓方塊每隔 1 秒換一次顏色（提示：<code>while true do</code> 和 <code>task.wait(1)</code>）。</p></div>
+
+  <h3>第 4 週：碰到就失敗的「熔岩方塊」</h3>
+  <p><strong>事件（Event）</strong>：當某件事發生時執行程式；<strong>if 判斷</strong>：符合條件才執行。</p>
+<pre><code>local part = script.Parent
+
+part.Touched:Connect(function(hit)
+	local humanoid = hit.Parent:FindFirstChild("Humanoid")
+	if humanoid then
+		humanoid.Health = 0
+	end
+end)</code></pre>
+  <p>有東西碰到方塊時，檢查它是不是玩家角色；如果是，就讓角色的血量歸零。</p>
+  <div class="tip"><p><strong>小任務：</strong>把熔岩方塊改成紅色霓虹材質，放進跑酷關卡裡。</p></div>
+
+  <h3>第 5 週：會動的機關</h3>
+  <ul>
+    <li>消失再出現的平台：<code>Transparency</code> 搭配 <code>CanCollide</code>（能不能站上去）</li>
+    <li>用 <strong>TweenService</strong> 讓平台來回移動</li>
+    <li>加入 <strong>Checkpoint（檢查點）</strong>：多放幾個 SpawnLocation</li>
+  </ul>
+  <div class="tip"><p><strong>小任務：</strong>在關卡裡加入 3 種機關：消失平台、移動平台和熔岩地板。</p></div>
+
+  <h2>第 3 階段：讓遊戲更完整（第 6 到 7 週）</h2>
+  <h3>第 6 週：收集金幣與排行榜</h3>
+  <p><strong>步驟 1：</strong>在 <strong>ServerScriptService</strong> 新增 Script，建立排行榜：</p>
+<pre><code>game.Players.PlayerAdded:Connect(function(player)
+	local leaderstats = Instance.new("Folder")
+	leaderstats.Name = "leaderstats"
+	leaderstats.Parent = player
+
+	local coins = Instance.new("IntValue")
+	coins.Name = "Coins"
+	coins.Value = 0
+	coins.Parent = leaderstats
+end)</code></pre>
+  <p><strong>步驟 2：</strong>做一個黃色金幣，在金幣裡新增 Script：</p>
+<pre><code>local coin = script.Parent
+local canCollect = true
+
+coin.Touched:Connect(function(hit)
+	local player = game.Players:GetPlayerFromCharacter(hit.Parent)
+	if player and canCollect then
+		canCollect = false
+		player.leaderstats.Coins.Value += 1
+		coin.Transparency = 1
+		task.wait(5)
+		coin.Transparency = 0
+		canCollect = true
+	end
+end)</code></pre>
+  <div class="note"><p><strong>重要觀念：</strong><code>canCollect</code> 是一個「開關」，防止玩家碰一下就被重複計算很多次。</p></div>
+  <div class="tip"><p><strong>小任務：</strong>在關卡各處藏 10 枚金幣，難拿的地方放多一點。</p></div>
+
+  <h3>第 7 週：音效、畫面和美化</h3>
+  <ul>
+    <li>加入 <strong>Sound（音效）</strong>：撿金幣的聲音、背景音樂</li>
+    <li>用 <strong>ScreenGui</strong> 和 <strong>TextLabel</strong> 顯示文字，例如「恭喜過關！」</li>
+    <li>調整 <strong>Lighting（光線）</strong>：白天、黃昏、夜晚</li>
+    <li>從 Toolbox 加入樹木、裝飾等素材</li>
+  </ul>
+  <div class="warn"><p>Toolbox 裡別人做的素材可能藏有惡意程式。只用 Roblox 官方或評價高的素材，放進來後檢查裡面有沒有可疑的 Script。</p></div>
+
+  <h2>第 4 階段：發布遊戲（第 8 週）</h2>
+  <ul>
+    <li><strong>File → Publish to Roblox</strong> 發布遊戲</li>
+    <li>取遊戲名稱、寫介紹、做縮圖</li>
+    <li>先設成<strong>私人</strong>或<strong>僅限好友</strong></li>
+  </ul>
+  <div class="tip">
+    <p><strong>小任務：</strong></p>
+    <ol>
+      <li>邀請 3 位家人或朋友試玩</li>
+      <li>問他們：哪裡最好玩？哪裡太難？哪裡有 bug？</li>
+      <li>根據回饋修改，發布第 2 版</li>
+    </ol>
+  </div>
+  <p><strong>完成 8 週後，孩子就有一款完全自己做的遊戲了！</strong></p>
+
+  <h2>推薦學習資源</h2>
+  <ul>
+    <li><a href="https://create.roblox.com/docs">Roblox Creator Hub</a>：官方教學文件和入門課程</li>
+    <li><strong>Studio 內建 AI 助手（Assistant）</strong>：可以問程式問題，但鼓勵孩子先自己想</li>
+    <li><strong>YouTube：</strong>搜尋「Roblox Studio 教學」或「Roblox Studio tutorial」，例如 TheDevKing、AlvinBlox</li>
+    <li><strong>Roblox Education</strong>：官方免費課程，適合學校和家長</li>
+  </ul>
+
+  <h2>給家長的陪伴建議</h2>
+  <ol>
+    <li><strong>不懂程式也沒關係：</strong>當孩子的「第一位玩家」，給真心的回饋。</li>
+    <li><strong>鼓勵試錯：</strong>教孩子看 Output 視窗的錯誤訊息，自己找問題。</li>
+    <li><strong>重視過程：</strong>誇獎「這個機關設計得很聰明」，不要只問「有多少人玩」。</li>
+    <li><strong>讓孩子自己做決定：</strong>主題、顏色、關卡設計都由他決定。</li>
+    <li><strong>注意安全：</strong>發布遊戲時不要填真實姓名、學校等個人資料。</li>
+  </ol>
+
+  <h2>學完之後可以挑戰</h2>
+  <ul>
+    <li>第二款遊戲：逃脫房間、塔防遊戲或模擬經營遊戲</li>
+    <li>進階程式：<strong>DataStore</strong>（存檔）、<strong>RemoteEvent</strong>（玩家和伺服器溝通）</li>
+    <li>參加遊戲開發比賽（Game Jam）</li>
+  </ul>
+</main>
+<footer><div class="inner">
+  <p>本站為一般資訊整理，不能取代醫師、心理師或其他專業人員的個別評估。</p>
+  <p>Roblox 為 Roblox Corporation 的商標，本站與 Roblox 官方無關。</p>
+</div></footer>
+</body>
+</html>
